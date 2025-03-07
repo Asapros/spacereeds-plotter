@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {assertTransformation} from "./mock-streams";
 import {z} from "zod";
 import {faker} from "@faker-js/faker";
-import StructureValidatorStream from "$lib/transformers/validator";
+import StructureValidatorStream from "$lib/stream/validator";
 
 const ExampleSchema = z.object({
     key: z.string(),

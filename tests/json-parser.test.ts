@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {assertTransformation, drainStream, queuedStream} from "./mock-streams";
-import JsonParserStream from "$lib/transformers/json-parser";
+import JsonParserStream from "$lib/stream/json-parser";
 import {faker} from "@faker-js/faker";
 
 describe("JsonParserStream", () => {

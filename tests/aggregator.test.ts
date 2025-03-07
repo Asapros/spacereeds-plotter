@@ -1,4 +1,4 @@
-import LineAggregatorStream from "$lib/transformers/aggregator";
+import LineAggregatorStream from "$lib/stream/aggregator";
 import { describe, it, expect } from 'vitest';
 import {assertTransformation, drainStream, queuedStream} from "./mock-streams";
 
