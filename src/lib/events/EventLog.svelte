@@ -9,25 +9,40 @@
     let logLevel: number | undefined = $state();
 </script>
 
-<label for="log-level">Filtr: </label>
-<select name="log-level" bind:value={logLevel} >
-    {#each LEVEL_NAMES.keys() as level}
-        <option value={level} selected={level === DEFAULT_LOG_LEVEL}>
-            {LEVEL_NAMES.get(level)}
-        </option>
-    {/each}
-</select>
+<div>
+    <section id="control">
+        <label for="log-level">Filtr: </label>
+        <select name="log-level" bind:value={logLevel} >
+            {#each LEVEL_NAMES.keys() as level}
+                <option value={level} selected={level === DEFAULT_LOG_LEVEL}>
+                    {LEVEL_NAMES.get(level)}
+                </option>
+            {/each}
+        </select>
+        <EventExportButton />
+    </section>
+    <section id="logs">
+        <table>
+            <tbody>
+            {#each missionEvents.toReversed().filter((event) => event.importance >= (logLevel ?? DEFAULT_LOG_LEVEL)) as event}
+                <tr>
+                    <EventLine event={event} />
+                </tr>
+            {/each}
+            </tbody>
+        </table>
+    </section>
+</div>
+<style>
+    div {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    section#logs {
+        flex-grow: 1;
+        overflow: auto;
 
-<EventExportButton />
-
-<table>
-    <tbody>
-    {#each missionEvents.toReversed() as event}
-        {#if event.importance >= (logLevel ?? DEFAULT_LOG_LEVEL)}
-        <tr>
-            <EventLine event={event} />
-        </tr>
-        {/if}
-    {/each}
-    </tbody>
-</table>
+    }
+</style>

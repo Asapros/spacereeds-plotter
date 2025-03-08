@@ -25,15 +25,56 @@
     <NewMissionButton />
 </nav>
 <article>
-    <h1>Port Szeregowy</h1>
-    <ConnectionPanel />
-    <h1>Dziennik Zdarzeń</h1>
-    <EventLog />
-    <h1>Odczyty</h1>
-    <NumericSensorPanel />
+    <div>
+        <div id="serial-port" class="card">
+            <h1>Port Szeregowy</h1>
+            <ConnectionPanel />
+        </div>
+        <div id="event-log" class="card">
+            <h1>Dziennik Zdarzeń</h1>
+            <EventLog />
+        </div>
+    </div>
+    <div>
+        <div id="numeric-readings" class="card">
+            <h1>Odczyty</h1>
+            <NumericSensorPanel />
+        </div>
+    </div>
+    <div>
+    </div>
 </article>
 <style>
-    h1 {
-        font-family: "Comic Sans MS", serif;
+    * {
+        font-family: "Times New Roman",serif;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+    }
+    article {
+        flex-grow: 1;
+        overflow: hidden;
+        margin: 10px;
+        display: flex;
+    }
+    article>div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-inline: 10px;
+    }
+    .card {
+        border-style: dashed;
+        padding: 10px;
+        margin: 10px;
+    }
+    div#event-log {
+        flex-grow: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 </style>

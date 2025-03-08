@@ -10,3 +10,10 @@
 {:else if serialManager.state === SerialState.CLOSING}
     <button disabled>ROZŁĄCZ</button>
 {/if}
+
+<style>
+    button {
+        padding: 10px;
+        width: 50%;
+    }
+</style>

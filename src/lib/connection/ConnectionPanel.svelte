@@ -14,5 +14,8 @@
 <p>
     Ostatni pakiet: <LastReceiveTime />
 </p>
+<p>
+    Moc sygnału: 21.37%
+</p>
 
 <ConnectButton />
