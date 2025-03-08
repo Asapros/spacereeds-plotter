@@ -4,9 +4,21 @@ import {SerialState} from "$lib/serial/manager.svelte.js";
 </script>
 
 {#if serialManager.state === SerialState.OPEN}
-    POŁĄCZONO
+    <span id="connected">POŁĄCZONO</span>
 {:else if serialManager.state === SerialState.CLOSING}
-    ROZŁĄCZANIE...
+    <span id="disconnecting">ROZŁĄCZANIE...</span>
 {:else if serialManager.state === SerialState.FREE}
-    ROZŁĄCZONO
+    <span id="disconnected">ROZŁĄCZONO</span>
 {/if}
+
+<style>
+    span#connected {
+        color: green;
+    }
+    span#disconnecting {
+        color: yellow;
+    }
+    span#disconnected {
+        color: red;
+    }
+</style>
