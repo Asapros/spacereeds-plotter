@@ -1,33 +1,18 @@
 <script lang="ts">
-    import {SerialConnectionManager, SerialState} from "$lib/serial/manager.svelte.js";
-    import {serialManager, startHandlingSerial, stopHandlingSerial} from "$lib/serial/handler";
-    import {missionEvents, MissionEventType} from "$lib/events/event.svelte";
+    import {getLastEvent, MissionEventType, type ReceiveEvent} from "$lib/events/event.svelte";
+    import ConnectButton from "$lib/connection/ConnectButton.svelte";
+    import SerialStatusSymbol from "$lib/connection/SerialStatusSymbol.svelte";
+    import {onDestroy} from "svelte";
+    import {SvelteDate} from "svelte/reactivity";
+    import LastReceiveTime from "$lib/connection/LastReceiveTime.svelte";
 
-    let lastReceive: Date | undefined = $derived(missionEvents.filter((event) => event.type === MissionEventType.RECEIVE).at(-1)?.timestamp);
 </script>
 
 <p>
-    Status:
-    {#if serialManager.state === SerialState.OPEN}
-        POŁĄCZONO
-    {:else if serialManager.state === SerialState.CLOSING}
-        ROZŁĄCZANIE...
-    {:else if serialManager.state === SerialState.FREE}
-        ROZŁĄCZONO
-    {/if}
+    Status: <SerialStatusSymbol />
 </p>
 <p>
-    Ostatni pakiet:
-    {#if lastReceive !== undefined}
-        {lastReceive.toLocaleTimeString()}
-    {:else}
-        -
-    {/if}
+    Ostatni pakiet: <LastReceiveTime />
 </p>
-{#if serialManager.state === SerialState.FREE}
-    <button onclick={startHandlingSerial}>POŁĄCZ</button>
-{:else if serialManager.state === SerialState.OPEN}
-    <button onclick={stopHandlingSerial}>ROZŁĄCZ</button>
-{:else if serialManager.state === SerialState.CLOSING}
-    <button disabled>ROZŁĄCZ</button>
-{/if}
+
+<ConnectButton />

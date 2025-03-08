@@ -14,57 +14,57 @@ export enum ImportanceLevel {
     WARNING = 3,
     ERROR = 4,
 }
+export const LEVEL_NAMES: Map<ImportanceLevel, string> = new Map([
+    [ImportanceLevel.DEBUG, "DEBUG"],
+    [ImportanceLevel.INFO, "INFO"],
+    [ImportanceLevel.WARNING, "WARNING"],
+    [ImportanceLevel.ERROR, "ERROR"],
+])
 
-export interface MissionEvent {
-    type: MissionEventType
+export interface MissionEvent<T extends MissionEventType> {
+    type: T
     importance: ImportanceLevel
-    timestamp: Date
+    timestamp: number
 }
 
-export interface ReceiveEvent extends MissionEvent {
-    type: typeof MissionEventType.RECEIVE,
-    importance: typeof ImportanceLevel.DEBUG,
+export interface ReceiveEvent extends MissionEvent<MissionEventType.RECEIVE> {
     message: Reading
 }
 
-export interface StartEvent extends MissionEvent {
-    type: typeof MissionEventType.START,
-    importance: typeof ImportanceLevel.INFO
+export interface StartEvent extends MissionEvent<MissionEventType.START> {
 }
 
-export interface ConnectEvent extends MissionEvent {
-    type: typeof MissionEventType.CONNECT,
-    importance: typeof ImportanceLevel.INFO
+export interface ConnectEvent extends MissionEvent<MissionEventType.CONNECT> {
 }
 
-export interface DisconnectEvent extends MissionEvent {
-    type: typeof MissionEventType.DISCONNECT,
-    importance: typeof ImportanceLevel.INFO
+export interface DisconnectEvent extends MissionEvent<MissionEventType.DISCONNECT> {
 }
 
-export interface MalformedReceiveEvent extends MissionEvent {
-    type: typeof MissionEventType.MALFORMED_RECEIVE,
-    importance: typeof ImportanceLevel.WARNING,
+export interface MalformedReceiveEvent extends MissionEvent<MissionEventType.MALFORMED_RECEIVE> {
     phase: "parsing" | "validation"
 }
 
-export type AnyMissionEvent = StartEvent | ReceiveEvent | ConnectEvent | DisconnectEvent | MalformedReceiveEvent;
+export type AnyMissionEvent = ReceiveEvent | StartEvent | ConnectEvent | DisconnectEvent | MalformedReceiveEvent
 
 export function emitStartEvent(): void {
-    missionEvents.push({type: MissionEventType.START, importance: ImportanceLevel.INFO, timestamp: new Date()});
+    missionEvents.push({type: MissionEventType.START, importance: ImportanceLevel.INFO, timestamp: Date.now()});
 }
 export function emitConnectEvent(): void {
-    missionEvents.push({type: MissionEventType.CONNECT, importance: ImportanceLevel.INFO, timestamp: new Date()});
+    missionEvents.push({type: MissionEventType.CONNECT, importance: ImportanceLevel.INFO, timestamp: Date.now()});
 }
 export function emitDisconnectEvent(): void {
-    missionEvents.push({type: MissionEventType.DISCONNECT, importance: ImportanceLevel.INFO, timestamp: new Date()});
+    missionEvents.push({type: MissionEventType.DISCONNECT, importance: ImportanceLevel.INFO, timestamp: Date.now()});
 }
 export function emitReceiveEvent(message: Reading): void {
-    missionEvents.push({type: MissionEventType.RECEIVE, importance: ImportanceLevel.DEBUG, timestamp: new Date(), message: message});
+    missionEvents.push({type: MissionEventType.RECEIVE, importance: ImportanceLevel.DEBUG, timestamp: Date.now(), message: message});
 }
-export function emitMalformedReceiveEvent(phase: "parsing" | "validation") {
-    missionEvents.push({type: MissionEventType.MALFORMED_RECEIVE, importance: ImportanceLevel.WARNING, timestamp: new Date(), phase: phase});
+export function emitMalformedReceiveEvent(phase: "parsing" | "validation", sus: boolean) {
+    missionEvents.push({type: MissionEventType.MALFORMED_RECEIVE, importance: sus ? ImportanceLevel.WARNING : ImportanceLevel.DEBUG, timestamp: Date.now(), phase: phase});
 }
 
 
 export const missionEvents: Array<AnyMissionEvent> = $state([]);
+
+export function getLastEvent<T extends MissionEventType>(type: T): MissionEvent<T> | undefined {
+    return missionEvents.filter((event) => event.type === type).at(-1) as MissionEvent<T> | undefined;
+}
