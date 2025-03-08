@@ -68,3 +68,13 @@ export const missionEvents: Array<AnyMissionEvent> = $state([]);
 export function getLastEvent<T extends MissionEventType>(type: T): MissionEvent<T> | undefined {
     return missionEvents.filter((event) => event.type === type).at(-1) as MissionEvent<T> | undefined;
 }
+
+export function clearLogs(): void {
+    while (missionEvents.length > 0) missionEvents.pop();
+}
+export function setLogs(logs: Array<AnyMissionEvent>): void {
+    clearLogs()
+    for (const event of logs) {
+        missionEvents.push(event);
+    }
+}

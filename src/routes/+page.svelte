@@ -2,17 +2,17 @@
     import ConnectionPanel from "$lib/connection/ConnectionPanel.svelte";
     import EventLog from "$lib/events/EventLog.svelte";
     import {onMount} from "svelte";
-    import {loadLogs, saveLogs} from "$lib/events/storage";
+    import {loadLogsFromLocalStorage, saveLogsToLocalStorage} from "$lib/events/storage";
     import {missionEvents} from "$lib/events/event.svelte";
     import NewMissionButton from "$lib/mission/NewMissionButton.svelte";
     import {newMission} from "$lib/mission/initialize";
 
 
     onMount(async () => {
-        loadLogs()
+        loadLogsFromLocalStorage()
         if (missionEvents.length === 0) newMission();
 
-        $effect(() => {saveLogs()})
+        $effect(() => {saveLogsToLocalStorage()})
     })
 </script>
 <NewMissionButton />
