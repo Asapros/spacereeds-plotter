@@ -45,5 +45,5 @@ export async function startHandlingSerial() {
 
 export async function stopHandlingSerial() {
     await serialManager.closeSerial()
-    emitDisconnectEvent()
+    emitDisconnectEvent(false)
 }

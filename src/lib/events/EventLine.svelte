@@ -15,7 +15,11 @@
     {#if event.type === MissionEventType.CONNECT}
         Połączono
     {:else if event.type === MissionEventType.DISCONNECT}
-        Rozłączono
+        {#if event.unexpected}
+            Utracono połączenie
+        {:else}
+            Rozłączono
+        {/if}
     {:else if event.type === MissionEventType.MALFORMED_RECEIVE}
         Otrzymano nieprawidłowy odczyt
     {:else if event.type === MissionEventType.RECEIVE}

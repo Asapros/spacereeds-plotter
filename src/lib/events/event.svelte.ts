@@ -36,7 +36,9 @@ export interface StartEvent extends MissionEvent<MissionEventType.START> {}
 
 export interface ConnectEvent extends MissionEvent<MissionEventType.CONNECT> {}
 
-export interface DisconnectEvent extends MissionEvent<MissionEventType.DISCONNECT> {}
+export interface DisconnectEvent extends MissionEvent<MissionEventType.DISCONNECT> {
+    unexpected: boolean
+}
 
 export interface InterruptEvent extends MissionEvent<MissionEventType.INTERRUPT> {}
 
@@ -52,8 +54,8 @@ export function emitStartEvent(): void {
 export function emitConnectEvent(): void {
     missionEvents.push({type: MissionEventType.CONNECT, importance: ImportanceLevel.INFO, timestamp: Date.now()});
 }
-export function emitDisconnectEvent(): void {
-    missionEvents.push({type: MissionEventType.DISCONNECT, importance: ImportanceLevel.INFO, timestamp: Date.now()});
+export function emitDisconnectEvent(error: boolean): void {
+    missionEvents.push({type: MissionEventType.DISCONNECT, importance: error ? ImportanceLevel.ERROR : ImportanceLevel.INFO, timestamp: Date.now(), unexpected: error});
 }
 export function emitInterruptEvent(): void {
     missionEvents.push({type: MissionEventType.INTERRUPT, importance: ImportanceLevel.WARNING, timestamp: Date.now()});

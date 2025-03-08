@@ -1,3 +1,5 @@
+import {emitDisconnectEvent} from "$lib/events/event.svelte";
+
 const BAUD_RATE = 9600;
 
 
@@ -20,12 +22,16 @@ export class SerialConnectionManager {
 
         this.port = await navigator.serial.requestPort();
 
+        this.port.ondisconnect = () => {
+            emitDisconnectEvent(true)
+            this.closeSerial()
+        }
+
         await this.port!.open({ baudRate: BAUD_RATE });
         this.innerState = SerialState.OPEN;
 
         this.abortController = new AbortController();
         let stream = this.port!.readable;
-
         for (const transformer of transformers) {
             stream = stream.pipeThrough(transformer);
         }
