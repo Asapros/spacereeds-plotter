@@ -5,17 +5,25 @@
     import {onDestroy} from "svelte";
     import {SvelteDate} from "svelte/reactivity";
     import LastReceiveTime from "$lib/connection/LastReceiveTime.svelte";
+    import SignalMeter from "$lib/connection/SignalMeter.svelte";
 
 </script>
 
-<p>
-    Status: <SerialStatusSymbol />
-</p>
-<p>
-    Ostatni pakiet: <LastReceiveTime />
-</p>
-<p>
-    Moc sygnału: 21.37%
-</p>
+<table>
+    <tbody>
+    <tr>
+        <td>Status:</td>
+        <td><SerialStatusSymbol /></td>
+    </tr>
+    <tr>
+        <td>Moc sygnału:</td>
+        <td><SignalMeter /></td>
+    </tr>
+    <tr>
+        <td>Ostatni Pakiet:</td>
+        <td><LastReceiveTime /></td>
+    </tr>
+    </tbody>
+</table>
 
 <ConnectButton />

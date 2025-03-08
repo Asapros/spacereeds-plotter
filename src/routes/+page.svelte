@@ -8,6 +8,9 @@
     import {newMission} from "$lib/mission/initialize";
     import NumericSensorPanel from "$lib/sensors/NumericSensorPanel.svelte";
     import ErrorPanel from "$lib/sensors/ErrorPanel.svelte";
+    import OrientationPanel from "$lib/sensors/OrientationPanel.svelte";
+    import AccelerationPanel from "$lib/sensors/AccelerationPanel.svelte";
+    import PositionPanel from "$lib/sensors/PositionPanel.svelte";
 
 
     function onMissionInterrupt() {
@@ -27,16 +30,16 @@
 </nav>
 <article>
     <div>
-        <div id="serial-port" class="card">
-            <h1>Port Szeregowy</h1>
-            <ConnectionPanel />
-        </div>
         <div id="event-log" class="card">
             <h1>Dziennik Zdarzeń</h1>
             <EventLog />
         </div>
     </div>
     <div>
+        <div id="serial-port" class="card">
+            <h1>Port Szeregowy</h1>
+            <ConnectionPanel />
+        </div>
         <div id="numeric-readings" class="card">
             <h1>Odczyty</h1>
             <NumericSensorPanel />
@@ -47,6 +50,18 @@
         </div>
     </div>
     <div>
+        <div class="card">
+            <h1>Orientacja</h1>
+            <OrientationPanel />
+        </div>
+        <div class="card">
+            <h1>Przyspieszenie</h1>
+            <AccelerationPanel />
+        </div>
+        <div class="card">
+            <h1>Położenie</h1>
+            <PositionPanel />
+        </div>
     </div>
 </article>
 <style>
@@ -75,9 +90,7 @@
         border-style: dashed;
         padding: 10px;
         margin: 10px;
-    }
-    div#event-log {
-        flex-grow: 1;
+        flex: 1 0 auto;
         overflow: hidden;
         display: flex;
         flex-direction: column;

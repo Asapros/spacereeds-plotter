@@ -15,7 +15,7 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                <SensorStatusSymbol error={false} />
+                <SensorStatusSymbol error={false} /> [D]
             {/if}
         </td>
     </tr>
@@ -25,7 +25,7 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                <SensorStatusSymbol error={false} />
+                <SensorStatusSymbol error={false} /> [D]
             {/if}
         </td>
     </tr>
@@ -35,7 +35,7 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                <SensorStatusSymbol error={false} />
+                <SensorStatusSymbol error={false} /> [D]
             {/if}
         </td>
     </tr>
@@ -45,7 +45,7 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                <SensorStatusSymbol error={false} />
+                <SensorStatusSymbol error={false} /> [D]
             {/if}
         </td>
     </tr>
