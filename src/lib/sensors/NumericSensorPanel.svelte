@@ -1,24 +1,13 @@
 <script lang="ts">
     import {getLastEvent, MissionEventType, type ReceiveEvent} from "$lib/events/event.svelte";
-    import type {Reading} from "$lib/schema";
+    import type {Reading} from "$lib/serial/schema";
+    import {getLastReading, getLastReceive} from "$lib/sensors/reading";
 
-    let lastReceive: ReceiveEvent | undefined = $derived(getLastEvent(MissionEventType.RECEIVE) as ReceiveEvent | undefined);
-    let lastReading: Reading | undefined = $derived(lastReceive?.message);
-
+    let lastReading: Reading | undefined = $derived(getLastReading());
 </script>
 
 <table>
     <tbody>
-        <tr>
-            <td>Stan z:</td>
-            <td>
-                {#if lastReceive === undefined}
-                    -
-                {:else}
-                    {new Date(lastReceive.timestamp).toLocaleTimeString()}
-                {/if}
-            </td>
-        </tr>
         <tr>
             <td>Temp. zewnętrzna:</td>
             <td>

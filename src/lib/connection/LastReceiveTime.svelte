@@ -2,8 +2,9 @@
     import {onDestroy} from "svelte";
     import {getLastEvent, MissionEventType} from "$lib/events/event.svelte";
     import {SvelteDate} from "svelte/reactivity";
+    import {getLastReceive} from "$lib/sensors/reading";
 
-    let lastReceiveTimestamp: number | undefined = $derived(getLastEvent(MissionEventType.RECEIVE)?.timestamp);
+    let lastReceiveTimestamp: number | undefined = $derived(getLastReceive()?.timestamp);
     let timeSinceLastReceive: number | undefined = $state(undefined);
 
     const clock = setInterval(() => {

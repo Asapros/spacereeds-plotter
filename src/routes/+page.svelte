@@ -7,6 +7,7 @@
     import NewMissionButton from "$lib/mission/NewMissionButton.svelte";
     import {newMission} from "$lib/mission/initialize";
     import NumericSensorPanel from "$lib/sensors/NumericSensorPanel.svelte";
+    import ErrorPanel from "$lib/sensors/ErrorPanel.svelte";
 
 
     function onMissionInterrupt() {
@@ -39,6 +40,10 @@
         <div id="numeric-readings" class="card">
             <h1>Odczyty</h1>
             <NumericSensorPanel />
+        </div>
+        <div id="error-readings" class="card">
+            <h1>Stan czujników</h1>
+            <ErrorPanel />
         </div>
     </div>
     <div>

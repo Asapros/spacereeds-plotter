@@ -1,4 +1,4 @@
-import type {Reading} from "$lib/schema";
+import type {Reading} from "$lib/serial/schema";
 
 export enum MissionEventType {
     START = "start",

@@ -2,7 +2,7 @@ import {SerialConnectionManager} from "$lib/serial/manager.svelte";
 import LineAggregatorStream from "$lib/stream/aggregator";
 import JsonParserStream from "$lib/stream/json-parser";
 import StructureValidatorStream from "$lib/stream/validator";
-import {type Reading, ReadingSchema} from "$lib/schema";
+import {type Reading, ReadingSchema} from "$lib/serial/schema";
 import {
     type ConnectEvent,
     emitConnectEvent,
