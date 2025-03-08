@@ -5,7 +5,8 @@ export enum MissionEventType {
     CONNECT = "connect",
     DISCONNECT = "disconnect",
     RECEIVE = "receive",
-    MALFORMED_RECEIVE = "malformed_receive"
+    MALFORMED_RECEIVE = "malformed_receive",
+    INTERRUPT = "interrupt"
 }
 
 export enum ImportanceLevel {
@@ -31,20 +32,19 @@ export interface ReceiveEvent extends MissionEvent<MissionEventType.RECEIVE> {
     message: Reading
 }
 
-export interface StartEvent extends MissionEvent<MissionEventType.START> {
-}
+export interface StartEvent extends MissionEvent<MissionEventType.START> {}
 
-export interface ConnectEvent extends MissionEvent<MissionEventType.CONNECT> {
-}
+export interface ConnectEvent extends MissionEvent<MissionEventType.CONNECT> {}
 
-export interface DisconnectEvent extends MissionEvent<MissionEventType.DISCONNECT> {
-}
+export interface DisconnectEvent extends MissionEvent<MissionEventType.DISCONNECT> {}
+
+export interface InterruptEvent extends MissionEvent<MissionEventType.INTERRUPT> {}
 
 export interface MalformedReceiveEvent extends MissionEvent<MissionEventType.MALFORMED_RECEIVE> {
     phase: "parsing" | "validation"
 }
 
-export type AnyMissionEvent = ReceiveEvent | StartEvent | ConnectEvent | DisconnectEvent | MalformedReceiveEvent
+export type AnyMissionEvent = ReceiveEvent | StartEvent | ConnectEvent | DisconnectEvent | MalformedReceiveEvent | InterruptEvent
 
 export function emitStartEvent(): void {
     missionEvents.push({type: MissionEventType.START, importance: ImportanceLevel.INFO, timestamp: Date.now()});
@@ -54,6 +54,9 @@ export function emitConnectEvent(): void {
 }
 export function emitDisconnectEvent(): void {
     missionEvents.push({type: MissionEventType.DISCONNECT, importance: ImportanceLevel.INFO, timestamp: Date.now()});
+}
+export function emitInterruptEvent(): void {
+    missionEvents.push({type: MissionEventType.INTERRUPT, importance: ImportanceLevel.WARNING, timestamp: Date.now()});
 }
 export function emitReceiveEvent(message: Reading): void {
     missionEvents.push({type: MissionEventType.RECEIVE, importance: ImportanceLevel.DEBUG, timestamp: Date.now(), message: message});

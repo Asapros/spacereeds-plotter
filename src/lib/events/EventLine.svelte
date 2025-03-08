@@ -1,6 +1,6 @@
 <script lang="ts">
     import ImportanceSymbol from "$lib/events/ImportanceSymbol.svelte";
-    import type {AnyMissionEvent} from "$lib/events/event.svelte";
+    import {type AnyMissionEvent, MissionEventType} from "$lib/events/event.svelte";
     interface Props {
         event: AnyMissionEvent
     }
@@ -12,15 +12,17 @@
     <ImportanceSymbol level={event.importance} />
 </td>
 <td>
-    {#if event.type === "connect"}
+    {#if event.type === MissionEventType.CONNECT}
         Połączono
-    {:else if event.type === "disconnect"}
+    {:else if event.type === MissionEventType.DISCONNECT}
         Rozłączono
-    {:else if event.type === "malformed_receive"}
+    {:else if event.type === MissionEventType.MALFORMED_RECEIVE}
         Otrzymano nieprawidłowy odczyt
-    {:else if event.type === "receive"}
+    {:else if event.type === MissionEventType.RECEIVE}
         Otrzymano odczyt: {JSON.stringify(event.message)}
-    {:else if event.type === "start"}
+    {:else if event.type === MissionEventType.START}
         Rozpoczęto misję
+    {:else if event.type === MissionEventType.INTERRUPT}
+        Przerwano misję
     {/if}
 </td>
