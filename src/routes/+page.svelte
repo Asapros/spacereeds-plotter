@@ -6,6 +6,7 @@
     import {missionEvents} from "$lib/events/event.svelte";
     import NewMissionButton from "$lib/mission/NewMissionButton.svelte";
     import {newMission} from "$lib/mission/initialize";
+    import NumericSensorPanel from "$lib/sensors/NumericSensorPanel.svelte";
 
 
     onMount(async () => {
@@ -20,6 +21,8 @@
 <ConnectionPanel />
 <h1>Dziennik Zdarzeń</h1>
 <EventLog />
+<h1>Odczyty</h1>
+<NumericSensorPanel />
 
 <style>
     h1 {
