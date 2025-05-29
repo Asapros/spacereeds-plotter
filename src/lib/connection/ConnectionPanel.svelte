@@ -6,24 +6,36 @@
     import {SvelteDate} from "svelte/reactivity";
     import LastReceiveTime from "$lib/connection/LastReceiveTime.svelte";
     import SignalMeter from "$lib/connection/SignalMeter.svelte";
+    import {serialManager} from "$lib/serial/handler";
 
 </script>
 
-<table>
-    <tbody>
-    <tr>
-        <td>Status:</td>
-        <td><SerialStatusSymbol /></td>
-    </tr>
-    <tr>
-        <td>Moc sygnału:</td>
-        <td><SignalMeter /></td>
-    </tr>
-    <tr>
-        <td>Ostatni Pakiet:</td>
-        <td><LastReceiveTime /></td>
-    </tr>
-    </tbody>
-</table>
+{#if serialManager.isAvailable()}
+    <table>
+        <tbody>
+        <tr>
+            <td>Status:</td>
+            <td><SerialStatusSymbol /></td>
+        </tr>
+        <tr>
+            <td>Moc sygnału:</td>
+            <td><SignalMeter /></td>
+        </tr>
+        <tr>
+            <td>Ostatni Pakiet:</td>
+            <td><LastReceiveTime /></td>
+        </tr>
+        </tbody>
+    </table>
 
 <ConnectButton />
+{:else}
+    <p id="serial-unavailable">Przeglądarka nie wspiera portu szeregowego</p>
+{/if}
+
+<style>
+    p#serial-unavailable {
+        color: red;
+        font-style: italic;
+    }
+</style>

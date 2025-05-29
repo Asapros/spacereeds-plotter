@@ -17,6 +17,10 @@ export class SerialConnectionManager {
     private handler: Promise<void> | null = null;
     private abortController: AbortController | null = null;
 
+    isAvailable(): boolean {
+        return navigator.serial !== undefined;
+    }
+
     async openSerial(transformers: Array<TransformStream>, consumer: WritableStream) {
         if (this.innerState === SerialState.OPEN) { await this.closeSerial(); }
 
