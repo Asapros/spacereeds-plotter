@@ -10,32 +10,24 @@
 
 </script>
 
-{#if serialManager.isAvailable()}
-    <table>
-        <tbody>
-        <tr>
-            <td>Status:</td>
-            <td><SerialStatusSymbol /></td>
-        </tr>
-        <tr>
-            <td>Moc sygnału:</td>
-            <td><SignalMeter /></td>
-        </tr>
-        <tr>
-            <td>Ostatni Pakiet:</td>
-            <td><LastReceiveTime /></td>
-        </tr>
-        </tbody>
-    </table>
+<table>
+    <tbody>
+    <tr>
+        <td>Status:</td>
+        <td><SerialStatusSymbol /></td>
+    </tr>
+    <tr>
+        <td>Moc sygnału:</td>
+        <td><SignalMeter /></td>
+    </tr>
+    <tr>
+        <td>Ostatni Pakiet:</td>
+        <td><LastReceiveTime /></td>
+    </tr>
+    </tbody>
+</table>
 
 <ConnectButton />
-{:else}
-    <p id="serial-unavailable">Przeglądarka nie wspiera portu szeregowego</p>
-{/if}
 
 <style>
-    p#serial-unavailable {
-        color: red;
-        font-style: italic;
-    }
 </style>
