@@ -11,6 +11,7 @@
     import OrientationPanel from "$lib/sensors/OrientationPanel.svelte";
     import AccelerationPanel from "$lib/sensors/AccelerationPanel.svelte";
     import PositionPanel from "$lib/sensors/PositionPanel.svelte";
+    import TestEventButton from "$lib/events/TestEventButton.svelte";
 
 
     function onMissionInterrupt() {
@@ -27,6 +28,7 @@
 </script>
 <nav>
     <NewMissionButton />
+    <TestEventButton />
 </nav>
 <article>
     <div>

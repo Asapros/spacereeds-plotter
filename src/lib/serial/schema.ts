@@ -13,7 +13,9 @@ export const ReadingSchema = z.object({
     temperature: z.number(),
     internal_temperature: z.number(),
     pressure: z.number(),
-    signal: z.number()
+    signal: z.number(),
+    error: z.number(),
+    message: z.string()
 })
 
 export type Reading = z.infer<typeof ReadingSchema>;
