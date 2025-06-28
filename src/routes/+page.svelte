@@ -46,7 +46,7 @@
             <NumericSensorPanel />
         </div>
         <div id="error-readings" class="card">
-            <h1>Stan czujników</h1>
+            <h1>Stan modułów</h1>
             <ErrorPanel />
         </div>
     </div>

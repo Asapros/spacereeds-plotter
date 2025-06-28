@@ -28,15 +28,5 @@
             {/if}
         </td>
     </tr>
-    <tr>
-        <td>BMP: </td>
-        <td>
-            {#if lastReading === undefined}
-                -
-            {:else}
-                <SensorStatusSymbol error={lastReading.error & BMP_ERROR} />
-            {/if}
-        </td>
-    </tr>
     </tbody>
 </table>
