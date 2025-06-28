@@ -31,6 +31,6 @@
     {:else if event.type === MissionEventType.PAYLOAD_RECEIVE}
         (transmisja) &gt; {event.payload}
     {:else if event.type === MissionEventType.PAYLOAD_SEND}
-        [D] (transmisja) &lt; {event.payload}
+        (transmisja) &lt; {event.payload}
     {/if}
 </td>

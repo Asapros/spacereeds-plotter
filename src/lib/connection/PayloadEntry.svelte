@@ -17,7 +17,7 @@
 <form onsubmit={sendPayload}>
     <label for="payload">Transmisja: </label>
     <input name="payload" autocomplete="off" type="text" bind:value={payload}>
-    <input type="submit" disabled={serialManager.state !== SerialState.OPEN || payload.length === 0}> [D]
+    <input type="submit" disabled={serialManager.state !== SerialState.OPEN || payload.length === 0}>
 </form>
 
 <style>
