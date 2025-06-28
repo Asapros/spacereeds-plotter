@@ -25,10 +25,9 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                {lastReading.orientation.x}
+                {lastReading.orientation.x} &deg;/s
             {/if}
         </td>
-        <td>&deg;/s</td>
     </tr>
     <tr>
         <td>Pitch:</td>
@@ -36,10 +35,9 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                {lastReading.orientation.y}
+                {lastReading.orientation.y} &deg;/s
             {/if}
         </td>
-        <td>&deg;/s</td>
     </tr>
     <tr>
         <td>Yaw:</td>
@@ -47,10 +45,9 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                {lastReading.orientation.z}
+                {lastReading.orientation.z} &deg;/s
             {/if}
         </td>
-        <td>&deg;/s</td>
     </tr>
     <tr>
         <td class="axis-x">X:</td>
@@ -58,10 +55,9 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                {lastReading.acceleration.x}
+                {lastReading.acceleration.x} m/s&#xb2;
             {/if}
         </td>
-        <td>m/s&#xb2;</td>
     </tr>
     <tr>
         <td class="axis-y">Y:</td>
@@ -69,10 +65,9 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                {lastReading.acceleration.y}
+                {lastReading.acceleration.y} m/s&#xb2;
             {/if}
         </td>
-        <td>m/s&#xb2;</td>
     </tr>
     <tr>
         <td class="axis-z">Z:</td>
@@ -80,10 +75,9 @@
             {#if lastReading === undefined}
                 -
             {:else}
-                {lastReading.acceleration.z}
+                {lastReading.acceleration.z} m/s&#xb2;
             {/if}
         </td>
-        <td>m/s&#xb2;</td>
     </tr>
     </tbody>
 </table>
