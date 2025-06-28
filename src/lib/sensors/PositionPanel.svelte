@@ -1,6 +1,25 @@
-[D]
-<iframe src="https://maps.google.com/maps?q=50.29258384725705, 18.673304296620753&z=15&output=embed"></iframe>
+<script lang="ts">
+    import {BMP_ERROR, GPS_ERROR, IMU_ERROR, LORA_ERROR, type Reading, SD_ERROR} from "$lib/serial/schema";
+    import {getLastReading, getLastReceive} from "$lib/sensors/reading";
+    import SensorStatusSymbol from "$lib/sensors/ModuleStatusSymbol.svelte";
 
+    let lastReading: Reading | undefined = $derived(getLastReading());
+</script>
+<table><tbody><tr>
+    <td>GPS: </td>
+    <td>
+        {#if lastReading === undefined}
+            -
+        {:else}
+            <SensorStatusSymbol error={lastReading.error & GPS_ERROR} />
+        {/if}
+    </td>
+</tr></tbody></table>
+{#if lastReading === undefined}
+    -
+{:else}
+    <iframe src="https://maps.google.com/maps?q={lastReading.position.x}, {lastReading.position.y}&z=15&output=embed"></iframe>
+{/if}
 <style>
     iframe {
         border: none;

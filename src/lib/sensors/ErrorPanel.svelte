@@ -9,16 +9,6 @@
 <table>
     <tbody>
     <tr>
-        <td>GPS: </td>
-        <td>
-            {#if lastReading === undefined}
-                -
-            {:else}
-                <SensorStatusSymbol error={lastReading.error & GPS_ERROR} />
-            {/if}
-        </td>
-    </tr>
-    <tr>
         <td>LORA: </td>
         <td>
             {#if lastReading === undefined}
