@@ -9,7 +9,7 @@
     import NumericSensorPanel from "$lib/sensors/NumericSensorPanel.svelte";
     import ErrorPanel from "$lib/sensors/ErrorPanel.svelte";
     import PositionPanel from "$lib/sensors/PositionPanel.svelte";
-    import TestEventButton from "$lib/events/TestEventButton.svelte";
+    import TestEventButton from "$lib/events/MockEventReceive.svelte";
     import MovementPanel from "$lib/sensors/MovementPanel.svelte";
 
 
@@ -27,7 +27,6 @@
 </script>
 <nav>
     <NewMissionButton />
-    <TestEventButton />
 </nav>
 <article>
     <div>

@@ -7,7 +7,10 @@
     import LastReceiveTime from "$lib/connection/LastReceiveTime.svelte";
     import SignalMeter from "$lib/connection/SignalMeter.svelte";
     import {serialManager} from "$lib/serial/handler";
+    import {SerialState} from "$lib/serial/manager.svelte";
+    import TestEventButton from "$lib/events/MockEventReceive.svelte";
 
+    let mock: boolean = false;
 </script>
 
 <table>
@@ -26,8 +29,18 @@
     </tr>
     </tbody>
 </table>
-
-<ConnectButton />
+<label>
+    <input type="checkbox" bind:checked={mock} disabled={serialManager.state === SerialState.OPEN}>
+    Mock
+</label>
+{#if !mock}
+    <ConnectButton />
+{:else}
+    <TestEventButton />
+{/if}
 
 <style>
+    label {
+        text-align: right;
+    }
 </style>
