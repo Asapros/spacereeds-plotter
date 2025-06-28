@@ -8,10 +8,9 @@
     import {newMission} from "$lib/mission/initialize";
     import NumericSensorPanel from "$lib/sensors/NumericSensorPanel.svelte";
     import ErrorPanel from "$lib/sensors/ErrorPanel.svelte";
-    import OrientationPanel from "$lib/sensors/OrientationPanel.svelte";
-    import AccelerationPanel from "$lib/sensors/AccelerationPanel.svelte";
     import PositionPanel from "$lib/sensors/PositionPanel.svelte";
     import TestEventButton from "$lib/events/TestEventButton.svelte";
+    import MovementPanel from "$lib/sensors/MovementPanel.svelte";
 
 
     function onMissionInterrupt() {
@@ -53,12 +52,8 @@
     </div>
     <div>
         <div class="card">
-            <h1>Orientacja</h1>
-            <OrientationPanel />
-        </div>
-        <div class="card">
-            <h1>Przyspieszenie</h1>
-            <AccelerationPanel />
+            <h1>Ruch</h1>
+            <MovementPanel />
         </div>
         <div class="card">
             <h1>Położenie</h1>

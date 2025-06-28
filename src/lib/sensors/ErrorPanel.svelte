@@ -1,5 +1,4 @@
 <script lang="ts">
-    import {getLastEvent, MissionEventType, type ReceiveEvent} from "$lib/events/event.svelte";
     import {BMP_ERROR, GPS_ERROR, IMU_ERROR, LORA_ERROR, type Reading, SD_ERROR} from "$lib/serial/schema";
     import {getLastReading, getLastReceive} from "$lib/sensors/reading";
     import SensorStatusSymbol from "$lib/sensors/ModuleStatusSymbol.svelte";
@@ -26,16 +25,6 @@
                 -
             {:else}
                 <SensorStatusSymbol error={lastReading.error & LORA_ERROR} />
-            {/if}
-        </td>
-    </tr>
-    <tr>
-        <td>IMU: </td>
-        <td>
-            {#if lastReading === undefined}
-                -
-            {:else}
-                <SensorStatusSymbol error={lastReading.error & IMU_ERROR} />
             {/if}
         </td>
     </tr>
