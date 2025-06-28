@@ -17,7 +17,7 @@
         color: red
     }
     span#healthy {
-        color: green
+        color: lightgreen;
     }
 </style>
 

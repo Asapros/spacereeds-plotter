@@ -12,6 +12,9 @@
 <span class={levelName}>{levelName}</span>
 
 <style>
+    span {
+        color: black;
+    }
     span.DEBUG {
         background-color: pink;
     }

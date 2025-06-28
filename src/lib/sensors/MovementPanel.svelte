@@ -97,6 +97,6 @@
         color: red;
     }
     .axis-z {
-        color: green;
+        color: lightgreen;
     }
 </style>

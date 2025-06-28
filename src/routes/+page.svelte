@@ -62,8 +62,14 @@
     </div>
 </article>
 <style>
-    * {
+    :root {
+        color-scheme: dark;
+    }
+
+    :global(body) {
         font-family: "Times New Roman",serif;
+        color: white;
+        background: #333333;
     }
     nav {
         display: flex;
@@ -84,12 +90,13 @@
         padding-inline: 10px;
     }
     .card {
-        border-style: dashed;
         padding: 10px;
         margin: 10px;
         flex: 1 1 auto;
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        box-shadow: 0 8px 12px 0 rgba(0,0,0,0.5);
+        background: #444444 ;
     }
 </style>
