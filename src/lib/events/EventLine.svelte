@@ -28,5 +28,9 @@
         Rozpoczęto misję
     {:else if event.type === MissionEventType.INTERRUPT}
         Przerwano misję
+    {:else if event.type === MissionEventType.PAYLOAD_RECEIVE}
+        (transmisja) &gt; {event.payload}
+    {:else if event.type === MissionEventType.PAYLOAD_SEND}
+        [D] (transmisja) &lt; {event.payload}
     {/if}
 </td>

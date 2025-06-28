@@ -9,6 +9,7 @@
     import {serialManager} from "$lib/serial/handler";
     import {SerialState} from "$lib/serial/manager.svelte";
     import TestEventButton from "$lib/events/MockEventReceive.svelte";
+    import PayloadEntry from "$lib/connection/PayloadEntry.svelte";
 
     let mock: boolean = false;
 </script>
@@ -29,6 +30,8 @@
     </tr>
     </tbody>
 </table>
+<br>
+<PayloadEntry />
 <label>
     <input type="checkbox" bind:checked={mock} disabled={serialManager.state === SerialState.OPEN}>
     Mock

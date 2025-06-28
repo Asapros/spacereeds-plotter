@@ -6,7 +6,9 @@ export enum MissionEventType {
     DISCONNECT = "disconnect",
     RECEIVE = "receive",
     MALFORMED_RECEIVE = "malformed_receive",
-    INTERRUPT = "interrupt"
+    INTERRUPT = "interrupt",
+    PAYLOAD_RECEIVE = "payload_receive",
+    PAYLOAD_SEND = "payload_send"
 }
 
 export enum ImportanceLevel {
@@ -32,6 +34,14 @@ export interface ReceiveEvent extends MissionEvent<MissionEventType.RECEIVE> {
     message: Reading
 }
 
+export interface PayloadMessageEvent extends MissionEvent<MissionEventType.PAYLOAD_RECEIVE> {
+    payload: string
+}
+
+export interface PayloadSendEvent extends MissionEvent<MissionEventType.PAYLOAD_SEND> {
+    payload: string
+}
+
 export interface StartEvent extends MissionEvent<MissionEventType.START> {}
 
 export interface ConnectEvent extends MissionEvent<MissionEventType.CONNECT> {}
@@ -46,7 +56,7 @@ export interface MalformedReceiveEvent extends MissionEvent<MissionEventType.MAL
     phase: "parsing" | "validation"
 }
 
-export type AnyMissionEvent = ReceiveEvent | StartEvent | ConnectEvent | DisconnectEvent | MalformedReceiveEvent | InterruptEvent
+export type AnyMissionEvent = ReceiveEvent | StartEvent | ConnectEvent | DisconnectEvent | MalformedReceiveEvent | InterruptEvent | PayloadMessageEvent | PayloadSendEvent
 
 export function emitStartEvent(): void {
     missionEvents.push({type: MissionEventType.START, importance: ImportanceLevel.INFO, timestamp: Date.now()});
@@ -62,6 +72,12 @@ export function emitInterruptEvent(): void {
 }
 export function emitReceiveEvent(message: Reading): void {
     missionEvents.push({type: MissionEventType.RECEIVE, importance: ImportanceLevel.DEBUG, timestamp: Date.now(), message: message});
+    if (message.message.length > 0) {
+        missionEvents.push({type: MissionEventType.PAYLOAD_RECEIVE, importance: ImportanceLevel.INFO, timestamp: Date.now(), payload: message.message})
+    }
+}
+export function emitPayloadSendEvent(payload: string) {
+    missionEvents.push({type: MissionEventType.PAYLOAD_SEND, importance: ImportanceLevel.INFO, timestamp: Date.now(), payload: payload})
 }
 export function emitMalformedReceiveEvent(phase: "parsing" | "validation", sus: boolean) {
     missionEvents.push({type: MissionEventType.MALFORMED_RECEIVE, importance: sus ? ImportanceLevel.WARNING : ImportanceLevel.DEBUG, timestamp: Date.now(), phase: phase});
