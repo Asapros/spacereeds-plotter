@@ -87,7 +87,7 @@
         border-style: dashed;
         padding: 10px;
         margin: 10px;
-        flex: 1 0 auto;
+        flex: 1 1 auto;
         overflow: hidden;
         display: flex;
         flex-direction: column;

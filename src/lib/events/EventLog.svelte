@@ -36,13 +36,14 @@
 <style>
     div {
         height: 100%;
+        max-height: 100%;
         overflow: hidden;
         display: flex;
         flex-direction: column;
     }
     section#logs {
         flex-grow: 1;
-        overflow: auto;
-
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 </style>
