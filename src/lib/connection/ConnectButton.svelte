@@ -14,11 +14,11 @@
 
 <style>
     button {
-        padding: 5px;
-        height: 100%;
-        margin: 30px;
-        font-size: 20px;
+        padding: 50px;
+        margin: 50px;
+        font-size: 30px;
         box-shadow: 0 8px 12px 0 rgba(0,0,0,0.5);
+        font-family: inherit;
     }
     button:active {
         box-shadow: none;
