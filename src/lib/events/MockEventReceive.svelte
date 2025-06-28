@@ -29,9 +29,9 @@
     function handleSubmit(event: SubmitEvent) {
         event.preventDefault()
         const reading: Reading = {
-                orientation: orientation,
+                orientation: { x: orientation.x, y: orientation.y, z: orientation.z },
                 position: {x: latitude * latitude_coefficient, y: longitude * longitude_coefficient, z: height},
-                acceleration: acceleration,
+                acceleration: { x: acceleration.x, y: acceleration.y, z: acceleration.z },
                 temperature: temperature,
                 internal_temperature: internal_temperature,
                 pressure: pressure,
@@ -163,7 +163,7 @@
     <div id="other-values">
         <label for="message">Wiadomość:</label><input type="text" name="message" bind:value={message}><br>
         <label for="signal-strength">Moc sygnału:</label><input type="range" name="signal-strength" bind:value={signal}> [D]<br>
-    <input type="submit" value="MOCK RECEIVE">
+    <input type="submit" value="ODCZYT PRÓBNY">
     </div>
 </form>
 
