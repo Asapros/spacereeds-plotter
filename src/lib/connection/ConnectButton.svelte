@@ -18,5 +18,9 @@
         height: 100%;
         margin: 30px;
         font-size: 20px;
+        box-shadow: 0 8px 12px 0 rgba(0,0,0,0.5);
+    }
+    button:active {
+        box-shadow: none;
     }
 </style>
