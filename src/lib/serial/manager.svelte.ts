@@ -21,6 +21,16 @@ export class SerialConnectionManager {
         return navigator.serial !== undefined;
     }
 
+    async sendPayload(message: string) {
+        if (this.innerState !== SerialState.OPEN) {
+            console.error("The port is not open");
+            return;
+        }
+        let writer = this.port!.writable.getWriter();
+        await writer.write(new TextEncoder().encode(message));
+        writer.releaseLock();
+    }
+
     async openSerial(transformers: Array<TransformStream>, consumer: WritableStream) {
         if (this.innerState === SerialState.OPEN) { await this.closeSerial(); }
 

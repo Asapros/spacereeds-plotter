@@ -6,8 +6,9 @@
 
     let payload: string = $state("");
 
-    function sendPayload(event: SubmitEvent) {
+    async function sendPayload(event: SubmitEvent) {
         event.preventDefault();
+        await serialManager.sendPayload(payload);
         emitPayloadSendEvent(payload);
         payload = "";
     }

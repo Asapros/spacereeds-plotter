@@ -1,4 +1,5 @@
 import type {Reading} from "$lib/serial/schema";
+import {serialManager} from "$lib/serial/handler";
 
 export enum MissionEventType {
     START = "start",
