@@ -14,6 +14,16 @@
             <SensorStatusSymbol error={lastReading.error & GPS_ERROR} />
         {/if}
     </td>
+    </tr>
+    <tr>
+    <td>Wysokość:</td>
+    <td>
+        {#if lastReading === undefined}
+            -
+        {:else}
+            {lastReading.position.z} m n.p.m
+        {/if}
+    </td>
 </tr></tbody></table>
 {#if lastReading === undefined}
     -
