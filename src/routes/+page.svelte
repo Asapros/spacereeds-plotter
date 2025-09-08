@@ -26,7 +26,12 @@
     })
 </script>
 <nav>
+    <div class="corner" id="left"></div>
     <NewMissionButton />
+    <div class="corner" id="right">
+        <img width="30px" height="30px" src="sc.svg" alt="sc">
+        <p>spacecoffee.net/spacereeds</p>
+    </div>
 </nav>
 <article>
     <div>
@@ -72,8 +77,21 @@
     }
     nav {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         margin: 10px;
+    }
+    .corner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 300px;
+        margin-inline: 20px;
+    }
+    #left {
+        justify-content: flex-start;
+    }
+    #right {
+        justify-content: flex-end;
     }
     article {
         flex-grow: 1;
